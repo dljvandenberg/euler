@@ -1,0 +1,557 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     17639,        548]
+NotebookOptionsPosition[     15726,        476]
+NotebookOutlinePosition[     16085,        492]
+CellTagsIndexPosition[     16042,        489]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Project Euler", "Title",
+ CellChangeTimes->{{3.539628691714441*^9, 3.539628699129752*^9}}],
+
+Cell["\<\
+Author: Dennis van den Berg
+Date: 2012-03-02\
+\>", "Subsubtitle",
+ CellChangeTimes->{{3.539697598657066*^9, 3.539697638113447*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Solutions", "Section",
+ CellChangeTimes->{{3.539697860732669*^9, 3.539697871617452*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Problem 1", "Subsection",
+ CellChangeTimes->{{3.539712711482899*^9, 3.539712715021517*^9}}],
+
+Cell["\<\
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we \
+get 3, 5, 6 and 9. The sum of these multiples is 23.
+Find the sum of all the multiples of 3 or 5 below 1000.\
+\>", "Text",
+ CellChangeTimes->{3.539712731621075*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ";", 
+    RowBox[{"sum", "=", "0"}]}], ",", 
+   RowBox[{"i", "<", "1000"}], ",", 
+   RowBox[{"i", "++"}], ",", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"Or", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Mod", "[", 
+         RowBox[{"i", ",", "3"}], "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"Mod", "[", 
+         RowBox[{"i", ",", "5"}], "]"}], "\[Equal]", "0"}]}], "]"}], ",", 
+     RowBox[{"sum", "+=", "i"}]}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", "sum"}], "Input",
+ CellChangeTimes->{{3.539712739230435*^9, 3.539712907143557*^9}, {
+  3.568918553481664*^9, 3.568918607847735*^9}, {3.568922846349933*^9, 
+  3.568922869174372*^9}}],
+
+Cell[BoxData["233168"], "Output",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.539712894064374*^9, 3.539712908223199*^9}, 
+   3.568918005875983*^9, 3.568918603436197*^9, 3.56892287063549*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Problem 15", "Subsection",
+ CellChangeTimes->{{3.539629310985765*^9, 3.539629313589302*^9}, 
+   3.568922815818391*^9}],
+
+Cell["\<\
+Starting in the top left corner in a 20 by 20 grid, how many routes are there \
+to the bottom right corner?
+
+Solution using combinatorics: same as the number of different sequences \
+drddrddd..rrrdddr containing 20 d's (down) and 20 l's (right).
+Generalized answer for n x m grid: (n+m)!/(n!m!)\
+\>", "Text",
+ CellChangeTimes->{
+  3.539629324098193*^9, {3.568922823737605*^9, 3.568922824086882*^9}, {
+   3.568922897539452*^9, 3.56892293047208*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"40", "!"}], "/", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"20", "!"}], ")"}], "^", "2"}]}]], "Input",
+ CellChangeTimes->{{3.568922936815026*^9, 3.568922949193538*^9}}],
+
+Cell[BoxData["137846528820"], "Output",
+ CellChangeTimes->{3.56892295078226*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Problem 16", "Subsection",
+ CellChangeTimes->{{3.539629310985765*^9, 3.539629313589302*^9}}],
+
+Cell["What is the sum of the digits of the number 2^1000?", "Text",
+ CellChangeTimes->{3.539629324098193*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Apply", "[", 
+  RowBox[{"Plus", ",", 
+   RowBox[{"Map", "[", 
+    RowBox[{"ToExpression", ",", 
+     RowBox[{"Characters", "[", 
+      RowBox[{"ToString", "[", 
+       RowBox[{"2", "^", "1000"}], "]"}], "]"}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.539629345796502*^9, 3.539629354417241*^9}}],
+
+Cell[BoxData["1366"], "Output",
+ CellChangeTimes->{3.539629355722117*^9, 3.568918104121549*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Problem 18", "Subsection",
+ CellChangeTimes->{{3.539629566513698*^9, 3.539629572606896*^9}}],
+
+Cell["\<\
+By starting at the top of the triangle below and moving to adjacent numbers \
+on the row below, the maximum total from top to bottom is 23.
+
+3
+7 4
+2 4 6
+8 5 9 3
+
+That is, 3 + 7 + 4 + 9 = 23.
+
+Find the maximum total from top to bottom of the triangle below:
+
+75
+95 64
+17 47 82
+18 35 87 10
+20 04 82 47 65
+19 01 23 75 03 34
+88 02 77 73 07 63 67
+99 65 04 28 06 16 70 92
+41 41 26 56 83 40 80 70 33
+41 48 72 33 47 32 37 16 94 29
+53 71 44 65 25 43 91 52 97 51 14
+70 11 33 28 77 73 17 78 39 68 17 57
+91 71 52 38 17 14 91 43 58 50 27 29 48
+63 66 04 68 89 53 67 30 73 16 69 87 40 31
+04 62 98 27 23 09 70 98 73 93 38 53 60 04 23\
+\>", "Text",
+ CellChangeTimes->{3.539629594330219*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ReducePyramid", "[", "pyramid_", "]"}], ":=", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Length", "[", "pyramid", "]"}], "\[Equal]", "1"}], ",", 
+    "\[IndentingNewLine]", "pyramid", ",", "\[IndentingNewLine]", 
+    RowBox[{"Block", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"reducedpyramid", ",", "i"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"reducedpyramid", "=", 
+        RowBox[{"Drop", "[", 
+         RowBox[{"pyramid", ",", 
+          RowBox[{"-", "1"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"i", "<=", 
+          RowBox[{"Length", "[", 
+           RowBox[{"reducedpyramid", "[", 
+            RowBox[{"[", 
+             RowBox[{"-", "1"}], "]"}], "]"}], "]"}]}], ",", 
+         RowBox[{"i", "++"}], ",", 
+         RowBox[{
+          RowBox[{"reducedpyramid", "[", 
+           RowBox[{"[", 
+            RowBox[{
+             RowBox[{"-", "1"}], ",", "i"}], "]"}], "]"}], "+=", 
+          RowBox[{"Max", "[", 
+           RowBox[{
+            RowBox[{"pyramid", "[", 
+             RowBox[{"[", 
+              RowBox[{
+               RowBox[{"-", "1"}], ",", "i"}], "]"}], "]"}], ",", 
+            RowBox[{"pyramid", "[", 
+             RowBox[{"[", 
+              RowBox[{
+               RowBox[{"-", "1"}], ",", 
+               RowBox[{"i", "+", "1"}]}], "]"}], "]"}]}], "]"}]}]}], "]"}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"ReducePyramid", "[", "reducedpyramid", "]"}]}]}], "]"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.539664387811729*^9, 3.539664410593265*^9}, {
+   3.539664480064341*^9, 3.539664527940741*^9}, {3.539665449512*^9, 
+   3.539665465261026*^9}, 3.539665553722986*^9, {3.539665661163739*^9, 
+   3.539665768742879*^9}, {3.539665833444908*^9, 3.539665838228408*^9}, {
+   3.539666084488895*^9, 3.539666318691985*^9}, {3.539666351340412*^9, 
+   3.539666397230066*^9}, {3.53969696946206*^9, 3.539697027644969*^9}, {
+   3.539697066030337*^9, 3.539697074175146*^9}, {3.539697176316124*^9, 
+   3.539697187076963*^9}, {3.539697468300107*^9, 3.539697470374165*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"input", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "75", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"95", ",", "64"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"17", ",", "47", ",", "82"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "35", ",", "87", ",", "10"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"20", ",", "04", ",", "82", ",", "47", ",", "65"}], "}"}], ",", 
+     
+     RowBox[{"{", 
+      RowBox[{"19", ",", "01", ",", "23", ",", "75", ",", "03", ",", "34"}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "88", ",", "02", ",", "77", ",", "73", ",", "07", ",", "63", ",", 
+       "67"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "99", ",", "65", ",", "04", ",", "28", ",", "06", ",", "16", ",", "70", 
+       ",", "92"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "41", ",", "41", ",", "26", ",", "56", ",", "83", ",", "40", ",", "80", 
+       ",", "70", ",", "33"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "41", ",", "48", ",", "72", ",", "33", ",", "47", ",", "32", ",", "37", 
+       ",", "16", ",", "94", ",", "29"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "53", ",", "71", ",", "44", ",", "65", ",", "25", ",", "43", ",", "91", 
+       ",", "52", ",", "97", ",", "51", ",", "14"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "70", ",", "11", ",", "33", ",", "28", ",", "77", ",", "73", ",", "17", 
+       ",", "78", ",", "39", ",", "68", ",", "17", ",", "57"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "91", ",", "71", ",", "52", ",", "38", ",", "17", ",", "14", ",", "91", 
+       ",", "43", ",", "58", ",", "50", ",", "27", ",", "29", ",", "48"}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "63", ",", "66", ",", "04", ",", "68", ",", "89", ",", "53", ",", "67", 
+       ",", "30", ",", "73", ",", "16", ",", "69", ",", "87", ",", "40", ",", 
+       "31"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "04", ",", "62", ",", "98", ",", "27", ",", "23", ",", "09", ",", "70", 
+       ",", "98", ",", "73", ",", "93", ",", "38", ",", "53", ",", "60", ",", 
+       "04", ",", "23"}], "}"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.539630740512609*^9, 3.539630752936811*^9}, 
+   3.539630828198668*^9, {3.539665502067079*^9, 3.539665512162273*^9}, {
+   3.539697523321519*^9, 3.539697526001079*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"MatrixForm", "[", "input", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ReducePyramid", "[", "input", "]"}]}], "Input",
+ CellChangeTimes->{{3.539665517942813*^9, 3.539665523253311*^9}, {
+  3.539697093167216*^9, 3.53969709606537*^9}, {3.539697303346478*^9, 
+  3.539697369647938*^9}, {3.539697493563605*^9, 3.539697495485739*^9}, {
+  3.539697531810789*^9, 3.539697533003627*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       RowBox[{"{", "75", "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{"95", ",", "64"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{"17", ",", "47", ",", "82"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{"18", ",", "35", ",", "87", ",", "10"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{"20", ",", "4", ",", "82", ",", "47", ",", "65"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{"19", ",", "1", ",", "23", ",", "75", ",", "3", ",", "34"}], 
+        "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{
+        "88", ",", "2", ",", "77", ",", "73", ",", "7", ",", "63", ",", 
+         "67"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{
+        "99", ",", "65", ",", "4", ",", "28", ",", "6", ",", "16", ",", "70", 
+         ",", "92"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{
+        "41", ",", "41", ",", "26", ",", "56", ",", "83", ",", "40", ",", 
+         "80", ",", "70", ",", "33"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{
+        "41", ",", "48", ",", "72", ",", "33", ",", "47", ",", "32", ",", 
+         "37", ",", "16", ",", "94", ",", "29"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{
+        "53", ",", "71", ",", "44", ",", "65", ",", "25", ",", "43", ",", 
+         "91", ",", "52", ",", "97", ",", "51", ",", "14"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{
+        "70", ",", "11", ",", "33", ",", "28", ",", "77", ",", "73", ",", 
+         "17", ",", "78", ",", "39", ",", "68", ",", "17", ",", "57"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{
+        "91", ",", "71", ",", "52", ",", "38", ",", "17", ",", "14", ",", 
+         "91", ",", "43", ",", "58", ",", "50", ",", "27", ",", "29", ",", 
+         "48"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{
+        "63", ",", "66", ",", "4", ",", "68", ",", "89", ",", "53", ",", "67",
+          ",", "30", ",", "73", ",", "16", ",", "69", ",", "87", ",", "40", 
+         ",", "31"}], "}"}]},
+      {
+       RowBox[{"{", 
+        RowBox[{
+        "4", ",", "62", ",", "98", ",", "27", ",", "23", ",", "9", ",", "70", 
+         ",", "98", ",", "73", ",", "93", ",", "38", ",", "53", ",", "60", 
+         ",", "4", ",", "23"}], "}"}]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Column], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.539697081314609*^9, 3.539697121619814*^9}, {
+   3.53969718031897*^9, 3.539697189745139*^9}, {3.539697305424096*^9, 
+   3.539697325091235*^9}, {3.539697361437881*^9, 3.539697370640885*^9}, {
+   3.539697478291674*^9, 3.539697496565654*^9}, 3.539697546513364*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", "1074", "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.539697081314609*^9, 3.539697121619814*^9}, {
+   3.53969718031897*^9, 3.539697189745139*^9}, {3.539697305424096*^9, 
+   3.539697325091235*^9}, {3.539697361437881*^9, 3.539697370640885*^9}, {
+   3.539697478291674*^9, 3.539697496565654*^9}, 3.53969754665701*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Problem 20", "Subsection",
+ CellChangeTimes->{{3.539628830758566*^9, 3.539628835803745*^9}}],
+
+Cell["Find the sum of the digits in the number 100!", "Text",
+ CellChangeTimes->{{3.539628861627433*^9, 3.539628870308644*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Apply", "[", 
+  RowBox[{"Plus", ",", 
+   RowBox[{"Map", "[", 
+    RowBox[{"ToExpression", ",", 
+     RowBox[{"Characters", "[", 
+      RowBox[{"ToString", "[", 
+       RowBox[{"100", "!"}], "]"}], "]"}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.539629020459787*^9, 3.539629067155148*^9}, {
+   3.539629104744725*^9, 3.539629115003431*^9}, 3.539629189653818*^9}],
+
+Cell[BoxData["648"], "Output",
+ CellChangeTimes->{{3.539629047411774*^9, 3.539629068309499*^9}, 
+   3.539629119037365*^9, 3.539629190604671*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Problem 24", "Subsection",
+ CellChangeTimes->{{3.53962867496148*^9, 3.539628688382391*^9}}],
+
+Cell["\<\
+A permutation is an ordered arrangement of objects.For example, 3124 is one \
+possible permutation of the digits 1, 2, 3 and 4. If all of the permutations \
+are listed numerically or alphabetically, we call it lexicographic order.The \
+lexicographic permutations of 0, 1 and 2 are :
+
+\t012 021 102 120 201 210
+
+What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, \
+5, 6, 7, 8 and 9?\
+\>", "Text",
+ CellChangeTimes->{{3.539628734930368*^9, 3.53962875964423*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToExpression", "[", 
+  RowBox[{"Apply", "[", 
+   RowBox[{"StringJoin", ",", 
+    RowBox[{"Map", "[", 
+     RowBox[{"ToString", ",", 
+      RowBox[{
+       RowBox[{"Sort", "[", 
+        RowBox[{"Permutations", "[", 
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", "9"}], "]"}], "]"}], "]"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"10", "^", "6"}], "]"}], "]"}]}], "]"}]}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.539628369374492*^9, 3.539628379207347*^9}, {
+  3.539628432585897*^9, 3.539628440249472*^9}, {3.539628535667847*^9, 
+  3.539628539749576*^9}, {3.53962857161765*^9, 3.539628573250208*^9}}],
+
+Cell[BoxData["2783915460"], "Output",
+ CellChangeTimes->{3.539628579277645*^9}]
+}, Open  ]]
+}, Closed]]
+}, Open  ]],
+
+Cell["New", "Section",
+ CellChangeTimes->{{3.539697684455755*^9, 3.53969768814491*^9}}]
+}, Open  ]]
+},
+WindowSize->{1280, 776},
+WindowMargins->{{-7, Automatic}, {Automatic, 24}},
+ShowSelection->True,
+FrontEndVersion->"7.0 for Linux x86 (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 96, 1, 85, "Title"],
+Cell[666, 25, 141, 4, 55, "Subsubtitle"],
+Cell[CellGroupData[{
+Cell[832, 33, 94, 1, 73, "Section"],
+Cell[CellGroupData[{
+Cell[951, 38, 97, 1, 39, "Subsection"],
+Cell[1051, 41, 253, 5, 51, "Text"],
+Cell[CellGroupData[{
+Cell[1329, 50, 766, 22, 55, "Input"],
+Cell[2098, 74, 218, 4, 31, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[2365, 84, 124, 2, 31, "Subsection"],
+Cell[2492, 88, 458, 10, 91, "Text"],
+Cell[CellGroupData[{
+Cell[2975, 102, 202, 6, 32, "Input"],
+Cell[3180, 110, 80, 1, 31, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3309, 117, 98, 1, 31, "Subsection"],
+Cell[3410, 120, 109, 1, 31, "Text"],
+Cell[CellGroupData[{
+Cell[3544, 125, 327, 8, 32, "Input"],
+Cell[3874, 135, 95, 1, 31, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[4018, 142, 98, 1, 31, "Subsection"],
+Cell[4119, 145, 683, 29, 531, "Text"],
+Cell[4805, 176, 2206, 53, 143, "Input"],
+Cell[7014, 231, 2407, 59, 99, "Input"],
+Cell[CellGroupData[{
+Cell[9446, 294, 398, 6, 55, "Input"],
+Cell[9847, 302, 3134, 87, 267, "Output"],
+Cell[12984, 391, 358, 6, 31, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[13391, 403, 98, 1, 31, "Subsection"],
+Cell[13492, 406, 127, 1, 31, "Text"],
+Cell[CellGroupData[{
+Cell[13644, 411, 393, 9, 32, "Input"],
+Cell[14040, 422, 144, 2, 31, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[14233, 430, 97, 1, 31, "Subsection"],
+Cell[14333, 433, 496, 11, 131, "Text"],
+Cell[CellGroupData[{
+Cell[14854, 448, 648, 16, 32, "Input"],
+Cell[15505, 466, 79, 1, 31, "Output"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]],
+Cell[15623, 472, 87, 1, 73, "Section"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
